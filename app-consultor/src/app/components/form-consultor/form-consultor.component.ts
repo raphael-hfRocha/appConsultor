@@ -414,6 +414,7 @@ export class FormConsultorComponent implements OnInit {
           }
         });
       } else {
+        consultorData.dataCadastro = new Date();
         this.consultorService.adicionarConsultor(consultorData).subscribe({
           next: (consultor) => {
             this.loading = false;

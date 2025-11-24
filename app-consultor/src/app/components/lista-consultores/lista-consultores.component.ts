@@ -76,6 +76,7 @@ import { Consultor } from '../../models/consultor.model';
             <p><strong>Experiência:</strong> {{ consultor.experiencia }} anos</p>
             <p><strong>Tarifa:</strong> R$ {{ consultor.tarifa | number:'1.2-2' }}/hora</p>
             <p *ngIf="consultor.descricao" class="descricao">{{ consultor.descricao }}</p>
+            <p><strong>Data de Cadastro:</strong> {{ consultor.dataCadastro | date: 'shortDate' }}</p>
           </div>
 
           <div class="consultor-actions" *ngIf="isAdmin">

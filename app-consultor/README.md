@@ -22,38 +22,100 @@ ng generate component component-name
 
 For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
-```bash
-ng generate --help
+## AppConsultor
+
+Aplicação Angular de exemplo para gerenciamento de consultores.
+
+Funcionalidades principais implementadas:
+
+- Autenticação com usuários mocados (Administrador e Usuário Comum).
+- Controle de acesso via `AuthGuard` e `AdminGuard`.
+- CRUD completo de consultores (adicionar, editar, excluir) com estado centralizado via `ConsultorService`.
+- Navegação entre telas: `Login`, `Consultores`, `Formulário de Cadastro/Edição` e `Sobre`.
+- Formulários reativos (`Reactive Forms`) com validação.
+- Comunicação entre componentes via `@Input()` e `@Output()` e `EventEmitter`.
+
+Credenciais mocadas (para demonstração):
+
+- Administrador: `admin@empresa.com` / `admin123` (acesso total: visualizar, adicionar, editar, excluir)
+- Usuário Comum: `user@empresa.com` / `user123` (apenas visualizar lista)
+
+Tecnologias:
+
+- Angular (Standalone Components)
+- TypeScript
+- Angular Router
+- Reactive Forms
+- RxJS (BehaviorSubject para estado)
+
+### Como rodar (desenvolvimento)
+
+1. Instale dependências:
+
+```powershell
+npm install
 ```
 
-## Building
+2. Inicie a aplicação em modo de desenvolvimento:
 
-To build the project run:
-
-```bash
-ng build
+```powershell
+npm start
+# ou
+ng serve
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+3. Abra no navegador: `http://localhost:4200/`
 
-## Running unit tests
+### Build para produção
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
+```powershell
+npm run build
+# resultado em: dist/app-consultor/
 ```
 
-## Running end-to-end tests
+### Deploy rápido (opções)
 
-For end-to-end (e2e) testing, run:
+- Vercel: crie um repositório no GitHub, conecte no Vercel e a plataforma detecta automaticamente o build. Configure `build command` como `npm run build` e `output directory` para `dist/app-consultor`.
 
-```bash
-ng e2e
-```
+- GitHub Pages (opção manual):
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+	1. Instale a ferramenta (opcional):
 
-## Additional Resources
+	```powershell
+	npm install -g angular-cli-ghpages
+	```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+	2. Faça build de produção:
+
+	```powershell
+	npm run build -- --configuration production
+	```
+
+	3. Publique (exemplo com angular-cli-ghpages):
+
+	```powershell
+	npx angular-cli-ghpages --dir=dist/app-consultor
+	```
+
+Observação: Vercel é a opção mais simples (deploy automático via GitHub). GitHub Pages funciona bem para apps SPA desde que o roteamento seja tratado (use HashLocationStrategy se necessário).
+
+### Estrutura relevante
+
+- `src/app/services/auth.service.ts` : autenticação (dados mocados), login/logout e estado do usuário.
+- `src/app/services/consultor.service.ts` : CRUD e estado centralizado dos consultores via `BehaviorSubject`.
+- `src/app/components/login` : tela de login com Reactive Forms.
+- `src/app/components/lista-consultores` : lista com filtros, ações de editar/excluir (apenas admin).
+- `src/app/components/form-consultor` : formulário reativo para criar/editar consultores.
+- `src/app/guards` : `AuthGuard` e `AdminGuard` protegem rotas.
+- `src/app/app.routes.ts` : rotas da aplicação.
+
+### Observações finais
+
+O sistema usa dados mocados em memória (não há backend). Para integrar com uma API real, substitua os métodos do `ConsultorService` por chamadas HTTP e persista usuários/token em um servidor.
+
+Se quiser, eu posso:
+
+- Ajudar a adicionar deploy automático no GitHub Actions/Vercel.
+- Adaptar o projeto para usar armazenamento persistente (fake API ou JSON server).
+
+Bom trabalho e diga o que deseja seguir a partir daqui.

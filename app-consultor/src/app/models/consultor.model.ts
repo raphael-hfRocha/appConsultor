@@ -8,6 +8,5 @@ export interface Consultor {
   tarifa: number;
   disponivel: boolean;
   descricao?: string;
-  criadoEm: Date;
-  atualizadoEm: Date;
+  dataCadastro: Date;
 }

@@ -32,17 +32,6 @@ import { User } from '../../models/user.model';
             </a>
             
             <a 
-              *ngIf="isAdmin"
-              routerLink="/consultor/novo" 
-              routerLinkActive="active"
-              class="nav-link"
-              (click)="closeMenu()"
-            >
-              <span class="nav-icon">➕</span>
-              <span>Novo Consultor</span>
-            </a>
-            
-            <a 
               routerLink="/sobre" 
               routerLinkActive="active"
               class="nav-link"
