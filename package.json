@@ -1,0 +1,12 @@
+{
+  "name": "appconsultor-monorepo",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "install-sub": "npm ci --prefix app-consultor",
+    "build-sub": "npm run build --prefix app-consultor -- --configuration production --base-href '/appConsultor/'",
+    "vercel-build": "npm run install-sub && npm run build-sub",
+    "start": "npm --prefix app-consultor start",
+    "deploy-gh": "npx angular-cli-ghpages --dir=app-consultor/dist/app-consultor --branch=gh-pages --repo=https://github.com/raphael-hfRocha/appConsultor.git"
+  }
+}
