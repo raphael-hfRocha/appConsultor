@@ -4,9 +4,10 @@
     {
       "src": "app-consultor/package.json",
       "use": "@vercel/static-build",
-      "config": { "distDir": "app-consultor/dist/app-consultor" }
+      "config": { "distDir": "dist/app-consultor" }
     }
   ],
+  "outputDirectory": "app-consultor/dist/app-consultor",
   "routes": [
     { "src": "/(.*)", "dest": "/index.html" }
   ]
