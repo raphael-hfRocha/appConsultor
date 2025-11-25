@@ -20,7 +20,11 @@ jobs:
 
       - name: Install dependencies (subproject)
         working-directory: ./app-consultor
-        run: npm ci
+        run: |
+          # Cleanup Angular cache and any stale tsbuildinfo to avoid path normalization bugs
+          rm -rf .angular/cache || true
+          find . -name "*.tsbuildinfo" -delete || true
+          npm ci
 
       - name: Build production (subproject)
         working-directory: ./app-consultor
