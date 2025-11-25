@@ -5,6 +5,11 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:prod": "ng build --configuration production --base-href '/appConsultor/'",
+    "install-sub": "npm ci",
+    "build-sub": "npm run build:prod",
+    "vercel-build": "npm ci && npm run build:prod",
+    "deploy-gh": "npx angular-cli-ghpages --dir=dist/app-consultor --branch=gh-pages --repo=https://github.com/raphael-hfRocha/appConsultor.git",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:app-consultor": "node dist/app-consultor/server/server.mjs"
